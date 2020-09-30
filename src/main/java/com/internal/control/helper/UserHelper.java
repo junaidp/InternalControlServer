@@ -50,8 +50,7 @@ public class UserHelper {
             throw ex;
         }
     }
-
-
+    
     public String getUserWithId(String userId) {
         String userJson;
         try {
