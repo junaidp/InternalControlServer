@@ -1,6 +1,8 @@
 package com.internal.control;
 
+import com.internal.control.helper.MainHelper;
 import com.internal.control.helper.UserHelper;
+import com.internal.control.model.Company;
 import com.internal.control.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import java.util.Date;
 class ControlApplicationTests {
     @Autowired
     UserHelper user;
+    @Autowired
+    MainHelper main;
     @Test
     void contextLoads() {
     }
@@ -28,6 +32,14 @@ class ControlApplicationTests {
         user.saveUser(user1);
 
 
+    }
+
+    @Test
+    void saveCompany(){
+        Company company = new Company();
+        company.setUserId(31);
+        company.setCompanyName("Junaid's company");
+        main.saveCompany(company);
     }
 
     @Test

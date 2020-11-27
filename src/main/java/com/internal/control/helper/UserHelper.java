@@ -22,7 +22,7 @@ public class UserHelper {
 
     public String saveUser(User user) {
         try {
-            System.out.println("Saving user" + user);
+            System.out.println("Saving user" + user.getName() +", pwd:" + user.getPassword());
             userRepository.save(user);
             return "user saved";
         } catch (Exception ex) {
@@ -50,7 +50,6 @@ public class UserHelper {
             throw ex;
         }
     }
-    
     public String getUserWithId(String userId) {
         String userJson;
         try {
@@ -77,6 +76,17 @@ public class UserHelper {
         }
         catch(Exception ex)
         {
+            throw ex;
+        }
+    }
+
+    public String deleteAllusers() {
+        try {
+            userRepository.deleteAll();
+            return "All users deletete";
+        }catch(Exception ex)
+        {
+            System.out.println("Error ind eleting all users");
             throw ex;
         }
     }
