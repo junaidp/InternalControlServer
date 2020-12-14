@@ -2,6 +2,7 @@ package com.internal.control.helper;
 
 import com.google.gson.Gson;
 import com.internal.control.model.User;
+import com.internal.control.repository.CompanyRepository;
 import com.internal.control.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -16,6 +17,8 @@ public class UserHelper {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    CompanyRepository companyRepository;
     @Autowired
     MongoOperations mongoOperation;
     Gson gson = new Gson();
@@ -64,6 +67,13 @@ public class UserHelper {
 
     public int getAvaiablaeUserId() {
         Long total = userRepository.count();
+        int count = total.intValue();
+        return count+1;
+
+    }
+
+    public int getAvaiablaCompanyId() {
+        Long total = companyRepository.count();
         int count = total.intValue();
         return count+1;
 

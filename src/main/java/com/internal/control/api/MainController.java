@@ -33,7 +33,7 @@ public class MainController {
     }
 
     @GetMapping("/getUserCompanies")
-    public String singIn(@RequestParam int userId) throws Exception
+    public String getUserCompanies(@RequestParam int userId) throws Exception
     {
         System.out.println("Fetching companies for userId:" + userId);
         return main.getUserCompanies(userId);
@@ -43,6 +43,7 @@ public class MainController {
     @PostMapping("/saveCompany")
     public String saveCompany(@RequestBody Company company)
     {
+        company.setCompanyId(user.getAvaiablaCompanyId());
         return main.saveCompany(company);
     }
 

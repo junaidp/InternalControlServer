@@ -10,7 +10,29 @@ public class Company {
     private String id;
     private String companyName;
     private int userId;
+    private int companyId;
 
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    private boolean completed = false;
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setComplleted(boolean completed) {
+        this.completed = completed;
+    }
 
     public String getCompanyName() {
         return companyName;
