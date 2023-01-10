@@ -1,12 +1,11 @@
 package com.internal.control.repository;
 
-import com.internal.control.model.Company;
 import com.internal.control.model.User;
+import com.internal.control.model.companyProcess;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-public interface CompanyRepository extends MongoRepository<Company, String> {
-
-    @Query("{ 'companyName' : ?0'}")
-    User findByName(String name);
+public interface ProcessRepository extends MongoRepository<companyProcess, String> {
+    @Query("{ 'name' : ?0'}")
+    companyProcess findByName(String name);
 }

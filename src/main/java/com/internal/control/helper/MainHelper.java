@@ -2,7 +2,6 @@ package com.internal.control.helper;
 
 import com.google.gson.Gson;
 import com.internal.control.model.Company;
-import com.internal.control.model.User;
 import com.internal.control.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -27,9 +26,9 @@ public class MainHelper {
             query.addCriteria(Criteria.where("userId").is(userId));
             //	BasicQuery query1 = new BasicQuery("{ name : '"+name+"'} , { password: '"+password+"'}");
             List<Company> companies = mongoOperation.find(query, Company.class);
-            System.out.println("company found for"+ userId+"");
-            for(Company company: companies)
-            System.out.println(company);
+            System.out.println("company found for" + userId + "");
+            for (Company company : companies)
+                System.out.println(company);
 
             String json = gson.toJson(companies);
             return json;
@@ -40,17 +39,15 @@ public class MainHelper {
         }
     }
 
+
     public String saveCompany(Company company) {
         try {
             System.out.println("Saving company" + company.getCompanyName());
-            companyRepository.save( company);
+            companyRepository.save(company);
             return "company saved";
         } catch (Exception ex) {
-            System.out.println("Error in saving company"+ ex);
+            System.out.println("Error in saving company" + ex);
             throw ex;
         }
     }
-
-
-
 }

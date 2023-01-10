@@ -12,6 +12,7 @@ public class User {
     private String id;
     private String name;
     private String password;
+    private String userRole;
     private Date creationDate = new Date();
     private int userId;
 
@@ -37,6 +38,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public Date getCreationDate() {

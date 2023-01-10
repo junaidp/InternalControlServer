@@ -36,7 +36,6 @@ public class ProjectHelper {
 
     public String getProjects(int userId, int companyId) {
         try {
-
             System.out.println("Getting project for  : '" + userId + "'}");
             Query query = new Query();
             if(companyId>0)
@@ -52,6 +51,29 @@ public class ProjectHelper {
             return json;
         } catch (Exception ex) {
             System.out.println("Error in getting projects  is :" + ex.getMessage());
+            throw ex;
+        }
+    }
+    //deleting project by Id
+    public String deleteProjectbyId(String projectId) {
+        try {
+            Project project = projectRepository.findById(projectId).get();
+            System.out.println("Deleting Project" + project.getProjectName());
+            projectRepository.deleteById(projectId);
+            return "project Deleted";
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+    //deleting project by Name
+    public String deleteProjectbyName(String projectname) {
+        try {
+            Query query = new Query();
+            query.addCriteria(Criteria.where("projectName").is(projectname));
+            Project project = mongoOperation.findOne(query,Project.class);
+            projectRepository.delete(project);
+            return "project Deleted";
+        } catch (Exception ex) {
             throw ex;
         }
     }

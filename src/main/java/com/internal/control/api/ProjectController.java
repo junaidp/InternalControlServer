@@ -28,5 +28,14 @@ public class ProjectController {
         return projectHelper.getProjects(userId, companyId );
 
     }
-
+    @GetMapping("/deleteProjectbyId")
+    public String deleteProjectbyId(@RequestParam String projectId) throws Exception
+    {
+        return projectHelper.deleteProjectbyId(projectId);
+    }
+    @GetMapping("/deleteProjectbyName")
+    public String deleteProjectbyName(@RequestParam String projectName) throws Exception
+    {
+        return projectHelper.deleteProjectbyName(projectName);
+    }
    }
