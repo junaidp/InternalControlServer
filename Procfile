@@ -1,1 +1,1 @@
-web: java -jar target/InternalControlServer.jar
+web: java -jar target/control.jar
