@@ -3,7 +3,9 @@ package com.internal.control.api;
 import com.internal.control.helper.*;
 import com.internal.control.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("api")
 @RestController
@@ -25,6 +27,9 @@ public class MainController {
     @Autowired
     SctHelper sct;
 
+    @Autowired
+    GLcodesHelper glcode;
+
     @PostMapping("/saveUser")
     public String saveUser(@RequestBody User userEntity)
     {
@@ -40,6 +45,29 @@ public class MainController {
         return user.getUser(userTest.getName(), userTest.getPassword());
     }
 
+    @GetMapping("/getallusers")
+    public String getAllUsers()
+    {
+        return user.getAllusers();
+    }
+
+    @PostMapping("/uploadFile")
+    public String uploadFile(@RequestBody MultipartFile file)
+    {
+
+        return glcode.uploadFile(file);
+    }
+
+    @GetMapping("/deleteAllRecords")
+    public String deleteAllRecords()
+    {
+        return glcode.deleteAllrecords();
+    }
+
+    @GetMapping("/readFile")
+    public String readFile(){
+        return glcode.readFile();
+    }
 
     @PostMapping("/saveProcess")
     public String saveProcess(@RequestBody companyProcess processEntity)
@@ -56,6 +84,14 @@ public class MainController {
     {
         return process.deleteProcess(processId);
     }
+
+    @PostMapping("/updateProcess")
+    public String updateProcess(@RequestBody companyProcess updateprocess)
+    {
+        return process.updateProcess(updateprocess);
+    }
+
+
     @GetMapping("/getUserCompanies")
     public String getUserCompanies(@RequestParam int userId) throws Exception
     {
@@ -67,6 +103,12 @@ public class MainController {
     @PostMapping("/saveSubProcess")
     public String saveSubProcess(@RequestBody SubProcess subprocessEntity){
         return subprocess.saveSubProcess(subprocessEntity);
+    }
+
+    @PostMapping("/updatesubprocess")
+    public String updateSubProcess(@RequestBody SubProcess updatesubprocess)
+    {
+        return subprocess.updateSubprocess(updatesubprocess);
     }
     @PostMapping("/deleteSubProcess")
     public String deletSubProcess(@RequestParam int subprocessid)
@@ -86,6 +128,11 @@ public class MainController {
         return sct.saveSctProcess(sctEntity);
     }
 
+    @PostMapping("/updatesctprocess")
+    public String updateSctProcess(@RequestBody Sct updatesct)
+    {
+        return sct.updateSct(updatesct);
+    }
 
     @PostMapping("/deleteSctProcess")
     public String deleteSctProcess(@RequestParam int sctid)
@@ -103,6 +150,12 @@ public class MainController {
     {
         company.setCompanyId(user.getAvaiablaCompanyId());
         return main.saveCompany(company);
+    }
+
+    @PostMapping("/updateUser")
+    public String updateUser(@RequestBody User updateuser)
+    {
+        return user.updateUser(updateuser);
     }
     @GetMapping("/deleteAllUsers")
     public String deleteAllusers()

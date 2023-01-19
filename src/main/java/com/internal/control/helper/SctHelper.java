@@ -2,6 +2,8 @@ package com.internal.control.helper;
 
 import com.google.gson.Gson;
 import com.internal.control.model.Sct;
+import com.internal.control.model.SubProcess;
+import com.internal.control.model.User;
 import com.internal.control.model.companyProcess;
 import com.internal.control.repository.ProcessRepository;
 import com.internal.control.repository.SctRepository;
@@ -45,6 +47,26 @@ public class SctHelper {
         } catch (Exception ex) {
             System.out.println("Error in getting projects  is :" + ex.getMessage());
             throw ex;
+        }
+    }
+
+    public String updateSct(Sct sct)
+    {
+        try{
+            Query query = new Query();
+            query.addCriteria(Criteria.where("id").is(sct.getId()));
+            User updateduser = mongoOperation.findOne(query,User.class);
+            if(updateduser.equals(null))
+            {
+                return "could not find Sct";
+            }
+            else {
+                sctrepository.save(sct);
+                return "Updated Successfully";
+            }
+        }catch(Exception e)
+        {
+            return "Error :" + e;
         }
     }
 

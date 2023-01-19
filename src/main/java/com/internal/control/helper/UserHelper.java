@@ -5,12 +5,18 @@ import com.internal.control.model.User;
 import com.internal.control.repository.CompanyRepository;
 import com.internal.control.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
+import org.springframework.data.mongodb.core.FindAndReplaceOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.data.mongodb.core.query.UpdateDefinition;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,6 +55,26 @@ public class UserHelper {
             return status;
         } catch (Exception ex) {
             throw ex;
+        }
+    }
+
+    public String updateUser(User user)
+    {
+        try{
+            Query query = new Query();
+            query.addCriteria(Criteria.where("id").is(user.getId()));
+            User updateduser = mongoOperation.findOne(query,User.class);
+            if(updateduser.equals(null))
+            {
+                return "could not find user";
+            }
+            else {
+                userRepository.save(user);
+                return "Updated Successfully";
+            }
+        }catch(Exception e)
+        {
+            return "Error :" + e;
         }
     }
 
@@ -113,6 +139,21 @@ public class UserHelper {
         {
             System.out.println("Error in deleting all users");
             throw ex;
+        }
+    }
+
+    public String getAllusers()
+    {
+        try{
+            List<User> user = userRepository.findAll();
+            if (user.isEmpty()) {
+                return "No content found";
+            }
+            String json = gson.toJson(user);
+            return json;
+        }catch(Exception e)
+        {
+            return "Error: " + e;
         }
     }
 

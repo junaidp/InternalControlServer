@@ -2,6 +2,7 @@ package com.internal.control.helper;
 
 import com.google.gson.Gson;
 import com.internal.control.model.SubProcess;
+import com.internal.control.model.User;
 import com.internal.control.model.companyProcess;
 import com.internal.control.repository.ProcessRepository;
 import com.internal.control.repository.SubProcessRepository;
@@ -46,6 +47,25 @@ public class SubProcessHelper {
         } catch (Exception ex) {
             System.out.println("Error in getting processes  is :" + ex.getMessage());
             throw ex;
+        }
+    }
+    public String updateSubprocess(SubProcess sbprocess)
+    {
+        try{
+            Query query = new Query();
+            query.addCriteria(Criteria.where("id").is(sbprocess.getId()));
+            User updateduser = mongoOperation.findOne(query,User.class);
+            if(updateduser.equals(null))
+            {
+                return "could not find Sub process";
+            }
+            else {
+                subProcessRepository.save(sbprocess);
+                return "Updated Successfully";
+            }
+        }catch(Exception e)
+        {
+            return "Error :" + e;
         }
     }
 

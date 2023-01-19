@@ -1,6 +1,8 @@
 package com.internal.control.helper;
 
 import com.google.gson.Gson;
+import com.internal.control.model.SubProcess;
+import com.internal.control.model.User;
 import com.internal.control.model.companyProcess;
 import com.internal.control.model.Project;
 import com.internal.control.repository.ProcessRepository;
@@ -46,6 +48,26 @@ public class ProcessHelper {
         } catch (Exception ex) {
             System.out.println("Error in getting projects  is :" + ex.getMessage());
             throw ex;
+        }
+    }
+
+    public String updateProcess(companyProcess process)
+    {
+        try{
+            Query query = new Query();
+            query.addCriteria(Criteria.where("id").is(process.getId()));
+            User updateduser = mongoOperation.findOne(query,User.class);
+            if(updateduser.equals(null))
+            {
+                return "could not find process";
+            }
+            else {
+                processRepository.save(process);
+                return "Updated Successfully";
+            }
+        }catch(Exception e)
+        {
+            return "Error :" + e;
         }
     }
 
