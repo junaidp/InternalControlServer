@@ -11,6 +11,7 @@ public class User {
     @Id
     private String id;
     private String name;
+    private String email;
     private String password;
     private String userRole;
     private Date creationDate = new Date();
@@ -24,6 +25,13 @@ public class User {
         this.id = id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     public String getName() {
         return name;
     }

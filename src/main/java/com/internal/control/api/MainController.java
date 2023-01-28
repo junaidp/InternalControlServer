@@ -41,8 +41,8 @@ public class MainController {
     @PostMapping("/signIn")
     public String singIn(@RequestBody UserTest userTest) throws Exception
     {
-        System.out.println(userTest.getName() +","+ userTest.getPassword());
-        return user.getUser(userTest.getName(), userTest.getPassword());
+        System.out.println(userTest.getEmail() +","+ userTest.getPassword());
+        return user.getUser(userTest.getEmail(), userTest.getPassword());
     }
 
     @GetMapping("/getallusers")
