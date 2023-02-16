@@ -1,5 +1,6 @@
 package com.internal.control.api;
 
+import com.internal.control.crawler.CrawlerTest;
 import com.internal.control.helper.*;
 import com.internal.control.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class MainController {
 
     @Autowired
     GLcodesHelper glcode;
+
+    @Autowired
+    CrawlerTest crawlerTest;
 
     @PostMapping("/saveUser")
     public String saveUser(@RequestBody User userEntity)

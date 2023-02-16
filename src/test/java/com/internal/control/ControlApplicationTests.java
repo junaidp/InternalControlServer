@@ -1,5 +1,6 @@
 package com.internal.control;
 
+import com.internal.control.crawler.CrawlerTest;
 import com.internal.control.helper.MainHelper;
 import com.internal.control.helper.UserHelper;
 import com.internal.control.model.Company;
@@ -16,10 +17,18 @@ class ControlApplicationTests {
     UserHelper user;
     @Autowired
     MainHelper main;
+    @Autowired
+    CrawlerTest crawlerTest;
     @Test
     void contextLoads() {
     }
 
+    @Test
+    void testCrawler(){
+        System.out.println("calling crawler");
+
+        crawlerTest.callCrawler();
+    }
     @Test
     void saveUser()
     {
