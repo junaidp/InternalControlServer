@@ -28,7 +28,7 @@ public class MyCrawler extends WebCrawler {
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String href = url.getURL().toLowerCase();
         return !FILTERS.matcher(href).matches()
-                && href.startsWith("https://www.ics.uci.edu/");
+                && href.startsWith("https://");
     }
 
     /**
@@ -49,6 +49,11 @@ public class MyCrawler extends WebCrawler {
             System.out.println("Text length: " + text.length());
             System.out.println("Html length: " + html.length());
             System.out.println("Number of outgoing links: " + links.size());
+
+           // PRINT all the links we found
+            for (WebURL webUrl : links) {
+                System.out.println(webUrl.getURL());
+            }
         }
     }
 }

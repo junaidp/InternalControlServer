@@ -32,7 +32,7 @@ public class CrawlerTest {
     // URLs that are fetched and then the crawler starts following links
     // which are found in these pages
         controller.addSeed("https://karriere.rbk.de");
-        controller.addSeed("https://romed-jobs.de/de/jobs");
+       // controller.addSeed("https://romed-jobs.de/de/jobs");
 
         // Start the crawl. This is a blocking operation, meaning that your code
     // will reach the line after this only when crawling is finished.
