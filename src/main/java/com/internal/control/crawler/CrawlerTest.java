@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CrawlerTest {
     public void callCrawler(){
+        // PLEASE CHANGE THIs PATH AS PER YOUR COMPUTER
     String crawlStorageFolder = "/Users/macjp/projects/treatfair/crawler";
     int numberOfCrawlers = 7;
 
