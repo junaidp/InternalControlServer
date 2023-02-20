@@ -26,7 +26,6 @@ class ControlApplicationTests {
     @Test
     void testCrawler(){
         System.out.println("calling crawler");
-
         crawlerTest.callCrawler();
     }
     @Test
